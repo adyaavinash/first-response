@@ -7,6 +7,8 @@ import { Separator } from "@/components/ui/separator";
 import { Settings, Globe, User, Shield, Save } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
+
 const SettingsPage = () => {
   const [language, setLanguage] = useState("en");
   const [username, setUsername] = useState("");

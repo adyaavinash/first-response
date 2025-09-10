@@ -4,6 +4,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { Heart, Droplets, Map, ScanLine, Settings, Activity } from "lucide-react";
 
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
+
 const toolCards = [
   {
     title: "First Aid",
@@ -58,7 +60,7 @@ const HomePage = () => {
 
   const checkBackendHealth = async () => {
     try {
-      const response = await fetch("/api/health", {
+      const response = await fetch(`${API_BASE_URL}/health`, {
         headers: {
           "Authorization": `Bearer ${localStorage.getItem("auth_token")}`,
         },

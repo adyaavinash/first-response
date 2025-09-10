@@ -13,6 +13,7 @@ import L from 'leaflet';
 import icon from 'leaflet/dist/images/marker-icon.png';
 import iconShadow from 'leaflet/dist/images/marker-shadow.png';
 
+
 let DefaultIcon = L.icon({
     iconUrl: icon,
     shadowUrl: iconShadow,
@@ -21,6 +22,8 @@ let DefaultIcon = L.icon({
 });
 
 L.Marker.prototype.options.icon = DefaultIcon;
+
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
 
 interface SafeRouteResponse {
   distance_km: number;
@@ -151,7 +154,7 @@ const SafeRoutePage = () => {
                 end_lon: parseFloat(endResult.lon),
             };
 
-            const apiResponse = await fetch("/api/safe_route", {
+            const apiResponse = await fetch(`${API_BASE_URL}/safe_route`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json", Authorization: `Bearer ${authToken}` },
                 body: JSON.stringify(requestBody),

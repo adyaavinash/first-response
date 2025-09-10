@@ -8,6 +8,8 @@ import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Loader2, Shield, Smartphone } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
+
 const OtpPage = () => {
   const [otpDigits, setOtpDigits] = useState(Array(6).fill(""));
   const [isLoading, setIsLoading] = useState(false);
@@ -31,7 +33,7 @@ const OtpPage = () => {
 
     try {
       const preliminaryToken = localStorage.getItem("preliminary_token");
-      const response = await fetch("/api/verify_otp", {
+      const response = await fetch(`${API_BASE_URL}/verify_otp`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

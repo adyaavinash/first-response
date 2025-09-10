@@ -5,6 +5,8 @@ import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Loader2, ScanLine, Upload, Image as ImageIcon, AlertTriangle, CheckCircle, X } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
+
 interface ScanResponse {
   extracted_text: string;
   verdict: "Verified ✅" | "Suspicious ⚠" | "Error" | string; 
@@ -62,7 +64,7 @@ const FlyerScannerPage = () => {
       const formData = new FormData();
       formData.append("file", selectedFile);
 
-      const apiResponse = await fetch("/api/misinformation", {
+      const apiResponse = await fetch(`${API_BASE_URL}/misinformation`,{
         method: "POST",
         headers: { "Authorization": `Bearer ${authToken}` },
         body: formData,

@@ -14,6 +14,8 @@ import FlyerScannerPage from "./pages/dashboard/FlyerScannerPage";
 import SettingsPage from "./pages/dashboard/SettingsPage";
 import NotFound from "./pages/NotFound";
 
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
+
 const queryClient = new QueryClient();
 
 const App = () => (

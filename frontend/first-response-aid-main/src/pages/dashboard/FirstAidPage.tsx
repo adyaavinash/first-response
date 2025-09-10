@@ -9,13 +9,14 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { Loader2, Heart, CheckCircle, AlertTriangle } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
+
 interface ChecklistItem {
   action: string;
   how_to: string;
   avoid: string;
 }
 
-// FIX: Update interface to reflect both possible API responses
 interface FirstAidResponse {
   answer?: string;          // From the real backend
   answer_steps?: string[];  // From the demo data
@@ -40,7 +41,7 @@ const FirstAidPage = () => {
 
     try {
       const authToken = localStorage.getItem("auth_token");
-      const apiResponse = await fetch(`/api/first_aid?question=${encodeURIComponent(question)}&lang=${language}`, {
+      const apiResponse = await fetch(`${API_BASE_URL}/first_aid?question=${encodeURIComponent(question)}&lang=${language}`,{
         headers: { "Authorization": `Bearer ${authToken}` },
       });
 

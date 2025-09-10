@@ -9,6 +9,8 @@ import { Badge } from "@/components/ui/badge";
 import { Loader2, Droplets, Users, Calendar, Package, Pill, AlertTriangle, CheckCircle } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
+
 interface ResourceStatus {
   resource: string;
   status: "Adequate" | "Critical" | "Surplus";
@@ -53,7 +55,7 @@ const RationingPage = () => {
         days_count: parseInt(daysCount),
       };
 
-      const apiResponse = await fetch("/api/ration_all_explained", {
+      const apiResponse = await fetch(`${API_BASE_URL}/ration_all_explained`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
